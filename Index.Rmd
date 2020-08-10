@@ -1,0 +1,20 @@
+---
+title: "Index.Rmd"
+author: "Jonathan Schuster"
+date: "08/10/2020"
+output: html_document
+---
+ <!-- This initial chunk is loading all of the packages I'll be utilizing for my COVID report. Example, I'll be using the package "choroplethr" to set up choropleth maps as a form of graph. --> 
+
+```{r setup, include=FALSE, echo = FALSE}
+library(tidyverse)
+library(stringr)
+library(choroplethr)
+library(choroplethrMaps)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
