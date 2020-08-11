@@ -50,4 +50,22 @@ state_choropleth(deathData2, title = "Total Deaths due to COVID", legend = "Deat
 
 **Description:**
 
-This dataset comes from the CDC and the direct url is https://www.cdc.gov/covid-data-tracker/#cases. Same manipulations occur in this choropleth graph as the one presented in assignment 09. The only differences is I used the similar pop states rather than the midwest coalition states. This gives the viewer a nicer graph to look at just like the other choropleth. I'll be using these choropleths to show the viewer the total death counts to visualize how coalition states saw less deaths overall than noncoalition states.
+This dataset comes from the CDC and the direct url is [https://www.cdc.gov/covid-data-tracker/#cases](https://www.cdc.gov/covid-data-tracker/#cases). Same manipulations occur in this choropleth graph as the one presented in assignment 09. The only differences is I used the similar pop states rather than the midwest coalition states. This gives the viewer a nicer graph to look at just like the other choropleth. I'll be using these choropleths to show the viewer the total death counts to visualize how coalition states saw less deaths overall than noncoalition states.
+
+ <!-- In this chunk I'm attempting to summarize the data to get an idea about the mean deaths for the Midwest coalition states. Additionally, I'm renaming several columns with dplyr function rename(). After renaming, I elect to filter my results to my chosen 7 states. After filtering, I'm grouping my results by jurisdiction or the 7 states. After tidying up my results I shoot over to kable to create my table. Here I'm selecting the columns I want to present with the select() function. After, I'm adding a table caption and some other neat features like text size. --> 
+
+```{r summary, message=FALSE, echo=FALSE, warning=FALSE, include=TRUE}
+
+summaryData <- myData %>% rename(Cases = "Total Cases", Deaths = "Total Death", Deaths_per_100k = "Death_100k") %>% filter(jurisdiction %in% c("Michigan", "Ohio", "Wisconsin", "Minnesota", "Illinois", "Indiana", "Kentucky")) %>% group_by(jurisdiction)
+
+table1 <- knitr::kable(summaryData %>% select(Cases, Deaths, CasesInLast7Days, Deaths_per_100k),caption = "Table 1: Summary of number of cases/deaths and cases in the last 7 dats for Midwest Coalition States")
+kable_styling(table1, position = "right", latex_options = "striped", font_size = 14)
+```
+
+**Description:**
+
+This dataset comes from the CDC and the direct url is [https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Place-of-Deat/uggs-hy5q](https://data.cdc.gov/NCHS/Provisional-COVID-19-Death-Counts-by-Place-of-Deat/uggs-hy5q). I'm electing to use this table to look at 2 new variables on top of total deaths/cases. I'll be using cases in the last 7 days and deaths per 100,000 columns. These columns will help me answer my hypothesis of whether or not the coalition has reduced the spread of COVID. 
+
+
+
+
